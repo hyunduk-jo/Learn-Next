@@ -1,0 +1,20 @@
+@media screen and (min-width: 1199px) {
+  .rwidth {
+    font-size: 11px;
+    max-width: 45px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .rwidth {
+    font-size: 11px;
+    max-width: 70px;
+  }
+}
+
+@media screen and (max-width: 419px) {
+  .rwidth {
+    font-size: 11px;
+    max-width: 50px;
+  }
+}

@@ -9,9 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "bootstrap": "^5.0.2",
+    "dotenv": "^10.0.0",
+    "moment": "^2.29.1",
     "next": "11.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.9.0",
+    "react-responsive": "^8.2.0"
   },
   "devDependencies": {
     "eslint": "7.29.0",
