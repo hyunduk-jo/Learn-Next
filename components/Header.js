@@ -6,7 +6,7 @@ export default function Header() {
   const router = useRouter();
 
   const onValid = data => {
-    router.push(`/result/${data.summoner}`);
+    router.push(`/result/${data.summoner}?start=0`);
     setValue('summoner', "");
   }
   return (

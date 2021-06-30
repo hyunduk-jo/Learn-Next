@@ -16,7 +16,7 @@ export default function ParticipantCol({ team }) {
   })
 
   const onClick = (summoner) => {
-    router.push(`/result/${summoner}`)
+    router.push(`/result/${summoner}?start=0`)
   }
 
   return (
