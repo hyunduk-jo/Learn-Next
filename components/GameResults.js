@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import OGRSkeleton from "./OGRSkeleton";
 import OneGameResult from "./OneGameResult";
 
 export default function GameResult({ matchIds, puuid, loading, setLoading }) {
@@ -21,7 +22,11 @@ export default function GameResult({ matchIds, puuid, loading, setLoading }) {
 
   if (!gameResults) {
     return <div className="container-lg">
-      <h1>Loading...</h1>
+      <div className="row row-cols row-cols-xl-2">
+        {
+          Array(10).fill(0).map((_, idx) => <OGRSkeleton key={idx} />)
+        }
+      </div>
     </div>
   } else {
     return (

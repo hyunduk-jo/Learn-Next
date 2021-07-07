@@ -1,5 +1,6 @@
 import { useRouter } from "next/dist/client/router";
 import { useForm } from "react-hook-form"
+import Link from 'next/link'
 
 export default function Header() {
   const { register, handleSubmit, setValue } = useForm();
@@ -12,11 +13,15 @@ export default function Header() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-lg">
-        <div className="navbar-brand">DUK.GG</div>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" >
+        <Link href="/">
+          <a style={{ textDecoration: "none" }}>
+            <div className="navbar-brand fs-2 fw-bold">DUK.GG</div>
+          </a>
+        </Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navcollapse" >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse pt-2" id="navcollapse">
           <form className="d-flex ms-auto" onSubmit={handleSubmit(onValid)}>
             <input {...register('summoner', { required: true })} className="form-control me-2" type="search" placeholder="Search Summoner..." />
             <button className="btn btn-outline-success" type="submit">Search</button>

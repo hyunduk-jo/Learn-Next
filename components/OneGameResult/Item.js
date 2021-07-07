@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Item({ item }) {
 
   return (
@@ -5,10 +7,11 @@ export default function Item({ item }) {
       {
         item === 0 ?
           <div className="rounded bg-secondary" style={{ width: "32px", height: "32px" }}></div> :
-          <img className="item rounded"
+          <Image className="item rounded"
             src={`http://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/${item}.png`}
             alt={item}
-            style={{ width: "32px", height: "32px" }} />
+            width={32}
+            height={32} />
       }
     </div>
   )

@@ -7,7 +7,7 @@ const handler = async (req, res) => {
 
     res.json({ matchIds })
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
     res.json({ msg: "Error occured." })
   }
 }

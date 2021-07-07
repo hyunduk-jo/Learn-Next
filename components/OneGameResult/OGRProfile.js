@@ -1,3 +1,4 @@
+import Image from 'next/image'
 export default function OneGameProfile({ gameResult, myParticipantIdx }) {
   const myInfo = gameResult?.info?.participants[myParticipantIdx];
   const runeObj = {
@@ -30,44 +31,49 @@ export default function OneGameProfile({ gameResult, myParticipantIdx }) {
   const spell2 = myInfo?.summoner2Id;
   return (
     <div className="col d-flex flex-column align-items-center justify-content-center m-0 p-0" style={{ height: "180px" }}>
-      <h6 className={myInfo?.win ? "text-primary" : "text-danger"}>{myInfo?.win ? "승리" : "패배"}</h6>
-      <div className="d-flex justify-content-evenly" style={{ width: "100%" }}>
-        <img
-          className="rounded-circle mt-1"
+      <h6 className={myInfo?.win ? "text-primary fw-bold" : "text-danger fw-bold"}>{myInfo?.win ? "승리" : "패배"}</h6>
+      <div className="d-flex justify-content-between px-3" style={{ width: "100%" }}>
+        <Image
+          className="rounded-circle"
           src={`http://ddragon.leagueoflegends.com/cdn/11.13.1/img/champion/${myInfo?.championName}.png`}
           alt={myInfo?.championName}
-          style={{ width: "45px", height: "45px" }} />
+          width={45}
+          height={45} />
         <div className="row row-cols-2" style={{ width: "60px" }}>
-          <div className="col">
-            <img
+          <div className="col p-0">
+            <Image
               className="rounded"
               src={`https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/${runeObj[rune1]}`}
               alt={runeObj[rune1]}
-              style={{ width: "20px", height: "20px" }}
+              width={20}
+              height={20}
             />
           </div>
-          <div className="col">
-            <img
+          <div className="col p-0">
+            <Image
               className="rounded"
               src={`https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/${runeObj[rune2]}`}
               alt={runeObj[rune2]}
-              style={{ width: "20px", height: "20px" }}
+              width={20}
+              height={20}
             />
           </div>
-          <div className="col">
-            <img
+          <div className="col p-0">
+            <Image
               className="rounded"
               src={`https://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/${spellObj[spell1]}.png`}
               alt={spell1}
-              style={{ width: "20px", height: "20px" }}
+              width={20}
+              height={20}
             />
           </div>
-          <div className="col">
-            <img
+          <div className="col p-0">
+            <Image
               className="rounded"
               src={`https://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/${spellObj[spell2]}.png`}
               alt={spell2}
-              style={{ width: "20px", height: "20px" }}
+              width={20}
+              height={20}
             />
           </div>
         </div>
