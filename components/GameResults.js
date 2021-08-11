@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import OGRSkeleton from "./OGRSkeleton";
 import OneGameResult from "./OneGameResult";
 
-export default function GameResult({ matchIds, puuid, loading, setLoading }) {
+export default function GameResult({ matchIds, puuid, setLoading }) {
   const [gameResults, setGameResults] = useState(null);
 
   useEffect(() => {

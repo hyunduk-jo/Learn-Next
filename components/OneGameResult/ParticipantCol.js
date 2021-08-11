@@ -50,6 +50,6 @@ export default function ParticipantCol({ team }) {
           </div>
         })
       }
-    </div >
+    </div>
   )
 }

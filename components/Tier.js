@@ -1,4 +1,5 @@
 import RankInfo from "./RankInfo"
+import Image from "next/image"
 
 export default function Tier({ tier, rank, win, lost, points, type }) {
   switch (tier) {
@@ -21,8 +22,9 @@ export default function Tier({ tier, rank, win, lost, points, type }) {
     case "IRON":
       return <RankInfo rank={rank} type={type} win={win} lost={lost} points={points} name={"Iron"} />
     default:
-      return <img
-        style={{ width: "100px" }}
+      return <Image
+        width={100}
+        height={100}
         className="img-fluid"
         src={'/ranked-emblems/Emblem_Unrank.png'}
         alt="unrank"
