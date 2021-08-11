@@ -2,12 +2,38 @@ import axios from "axios"
 import GameResult from "../../components/GameResults"
 import UserSection from "../../components/UserSection"
 import Header from "../../components/Header"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ButtonSection from "../../components/ButtonSection"
+import { useRouter } from "next/dist/client/router"
 import Image from 'next/image'
 
-export default function Summoner({ matchIds, summonerInfos, start }) {
+export default function Summoner() {
   const [loading, setLoading] = useState(true);
+  const [summonerInfos, setSummonerInfos] = useState(null);
+  const [matchIds, setMatchIds] = useState(null);
+  const router = useRouter();
+
+  async function getSummonerInfos() {
+    const { data: { summonerInfos } } = await axios.post('/api/summoner', { summoner: router?.query.summoner });
+    setSummonerInfos(summonerInfos);
+  }
+
+  async function getMatchIds() {
+    const { data: { matchIds } } = await axios.post('/api/match', { puuid: summonerInfos?.puuid, start: router?.query.start });
+    setMatchIds(matchIds);
+  }
+
+  useEffect(() => {
+    if (router?.query?.summoner) {
+      getSummonerInfos();
+    }
+  }, [router?.query.summoner])
+
+  useEffect(() => {
+    if (summonerInfos) {
+      getMatchIds();
+    }
+  }, [summonerInfos?.puuid, router?.query.start])
 
   if (!summonerInfos || !matchIds) {
     return <div
@@ -30,33 +56,16 @@ export default function Summoner({ matchIds, summonerInfos, start }) {
           <GameResult
             matchIds={matchIds}
             puuid={summonerInfos.puuid}
+            loading={loading}
             setLoading={setLoading} />
         </section>
         <section>
           <ButtonSection
             loading={loading}
             summoner={summonerInfos.name}
-            start={start} />
+            start={router?.query.start} />
         </section>
       </>
     )
-  }
-}
-
-export const getServerSideProps = async (ctx) => {
-  const { summoner } = ctx.params;
-  const { start } = ctx.query;
-  const { data: { summonerInfos } } = await axios.post('http://localhost:3000/api/summoner', { summoner })
-  const matchIds = [];
-  if (summonerInfos) {
-    const { data: { matchIds: ids } } = await axios.post('http://localhost:3000/api/match', { puuid: summonerInfos.puuid, start });
-    matchIds.push(...ids);
-  }
-  return {
-    props: {
-      summonerInfos,
-      matchIds,
-      start
-    }
   }
 }
